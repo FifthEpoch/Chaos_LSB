@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <meta charset="UTF-8">
+        <title>Chaos_LSB</title>
+
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&display=swap">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK&display=swap" rel="stylesheet">
+
+    </head>
+
+    <body id="bottomLayer">
+
+        <h1>Chaos_LSB</h1>
+        <h2>EVERYBODY'S GOT SOMETHING TO HIDE.</h2>
+
+        <p1 class="intro">
+            Got something to say to your bud that should never see the light of day?<br><br>
+            Fly under the radar with Chaos_LSB, a steganography algorithm that embeds your secret in an image of your choosing.
+            Multiple layers of security are applied to your message to ensure that <strong>even if an entity suspects there are texts hidden in the image,
+            your message will not be compromised.</strong>
+        </p1>
+
+        <p1 class="intro">
+
+            <strong>Step 1: </strong> upload an image file.
+            <span class="tooltip">
+
+                See recommendation and requirements.
+                <span class="tooltipText">
+
+                    <b>Accepted image formats:</b>
+                    <br>PNG | JPEG | PDF | GIF <br> TIFF | SVG | BMP
+                    <br><br><b>Recommended minimum: </b>
+                    <br>500px * 500px
+
+                </span>
+
+            </span>
+            <br><br>
+            <strong>Step 2: </strong>
+            enter the message you want to hide in the image,
+            add a password to unlock the hidden message in the future.<br><br>
+            <strong>Step 3: </strong>
+            click "hide message" and download the image file.
+
+        </p1>
+
+        <p1 class="intro">
+            Upload your image below, provide a password, hit submit to reveal hidden message.
+        </p1>
+
+
+        <wiz class="wizard">
+            <h1>
+                <button id="put" type="button" onclick="showPage(1)">Encrypt</button>
+                <button id="read" type="button" onclick="showPage(2)">Decrypt</button>
+            </h1>
+
+        </wiz>
+
+        <wiz class="wizard">
+
+            <userinput>
+
+                <div class="container">
+                <input type="file" name="file" id="upload" class="inputfile" onchange="manageReadSubmit()" accept="image/*,.pdf"/>
+                <label for='upload' id='uploadLabel'><t>Upload image</t></label>
+                <label id="putFileName"></label><br><br>
+                </div>
+
+                <label for="msg"> Secret message: </label><br>
+                <textarea id="msg" name="msg" oninput="autoHeight('msg')"
+                      onkeyup="manageSubmit()" placeholder="type what you want to hide here..."></textarea><br>
+
+                <label for="pw"> Secret key: </label><br>
+                <textarea id="pw" name="pw" oninput="autoHeight('pw')"
+                      onkeyup="manageSubmit()" placeholder="be sure to memorize your key"></textarea><br>
+
+                <input type="submit" id="submit" value="Hide message" disabled>
+                <imgError></imgError><br><br>
+
+            </userinput>
+
+            <display>
+
+                <label id="img_info"></label><br>
+                <canvas id="canvas" class="responsive"></canvas>
+
+            </display>
+
+            <back type="button" onclick="showPage(0)">
+                <t>back</t>
+            </back>
+
+        </wiz>
+
+        <wiz class="wizard">
+
+            <userinput>
+
+                <div class="container">
+                <input type="file" name="file" id="read-img-upload" onchange="manageReadSubmit()" accept="image/*,.pdf" class="inputfile" />
+                    <label for='read-img-upload' id='read-img-upload-label'><t>Upload image</t></label>
+                <label id="readFileName"></label><br><br>
+                </div>
+
+                <label for="read-pw"> Secret key: </label><br>
+                <textarea id="read-pw" name="read-pw" oninput="autoHeight('read-pw')"
+                          onkeyup="manageReadSubmit()" placeholder="key is case-sensitive"></textarea><br>
+
+                <input type="submit" id="read-submit" value="Reveal message" disabled>
+                <imgError></imgError><br><br>
+
+            </userinput>
+
+            <display>
+
+                <label id="read_img_info"></label><br>
+                <canvas id="read-img-canvas" class="responsive"></canvas>
+
+            </display>
+
+            <back type="button" onclick="showPage(0)">
+                <t>back</t>
+            </back>
+
+        </wiz>
+    </body>
+
+    <body id="topLayer">
+        <div id="overlay" class="overlay">
+
+            <div id="overlayBG" class="overlayBG">
+                <div id="overlayContent" class="overlayContent">
+
+                    <div class="overlayContentText">
+
+                        <div>
+                        <a id="download" download="chaos.png">
+                            <downloadImgButton id="downloadButton" type="button" onClick="download()">
+                                <t>↓Download</t>
+                            </downloadImgButton>
+                        </a><br><br><br>
+
+                        ^ Download this altered image with your message embedded, use password below to unlock message later.</label><br><br>
+                        Password:
+                        </div><br>
+
+                        <div id="password"></div><br>
+                        <div>
+                        Your message:<br><br>
+                        </div>
+                        <div id="userMessage"></div>
+
+                    </div>
+
+                    <div class="overlayContentText">
+
+                        <div>
+                            <a id="exportText" download="msg.txt">
+                                <downloadImgButton id="exportTextButton" type="button" onClick="exportText()">
+                                    <t>Export.txt</t>
+                                </downloadImgButton>
+                            </a><br><br><br><br>
+                        </div>
+                        <div>
+                        Your message: <br><br>
+                        </div>
+                        <div id="retrievedMessage"><pre></pre></div>
+
+                    </div>
+
+                    <div id="overlayContentImg" class="overlayContentImg">
+
+                        <canvas id="downloadableCanvas" class="responsive"></canvas><br><br>
+
+                    </div>
+
+                </div>
+
+                <div>
+                <back type="button" onclick="overlay_off()">
+                    <t>exit</t>
+                </back>
+                </div>
+            </div>
+
+            <div id="overlayLoading" class="overlayBG">
+                <div id="loader" class="loaded"></div>
+            </div>
+
+        </div>
+    </body>
+    <script id="main" src="js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/pbkdf2.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
+</html>
