@@ -1,0 +1,15 @@
+{
+  "chaosdev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-chaoslsb-chaosdev-120848-authRole",
+      "UnauthRoleArn": "arn:aws:iam::496404152806:role/amplify-chaoslsb-chaosdev-120848-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::496404152806:role/amplify-chaoslsb-chaosdev-120848-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-chaoslsb-chaosdev-120848-deployment",
+      "UnauthRoleName": "amplify-chaoslsb-chaosdev-120848-unauthRole",
+      "StackName": "amplify-chaoslsb-chaosdev-120848",
+      "StackId": "arn:aws:cloudformation:us-west-2:496404152806:stack/amplify-chaoslsb-chaosdev-120848/b8e7e3e0-1fa2-11eb-a04d-02d839dc462f",
+      "AmplifyAppId": "d3v90zo52exf1d"
+    }
+  }
+}
