@@ -1,5 +1,7 @@
-# Chaos_LSB
+# Chaos_LSB 
 A secure steganographic system equipped with AES encryption and advanced payload distribution based on a chaotic system. Chaos_LSB supports all Unicode-supported lanaguages. 
+
+Check out the live site at bit.ly/chaos
 
 ## Introduction
 Sensitive informaiton, such as banned books and protest organization communications, require secure channels to evade private or state survillence. However, public access to secure communication channels is under threat for people all around the world. 
