@@ -16,9 +16,9 @@ Even when you aren’t getting arrested and have your finger forced onto your iP
 
 ## Usage
 **A: sender  B: receiver**
-2. **A** and **B** meets in person to establish a communication key, they store the key ***offline***;
-3. **A** embeds message in image with the established key, sends it to **B** through regular channels;
-4. **B** uses the key to decrypt the message scraped from the image and uses the same key to encrypt their reply.
+1. **A** and **B** meets in person to establish a communication key, they store the key ***offline***;
+2. **A** embeds message in image with the established key, sends it to **B** through regular channels;
+3. **B** uses the key to decrypt the message scraped from the image and uses the same key to encrypt their reply.
 
 
 
