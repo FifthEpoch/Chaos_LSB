@@ -30,9 +30,9 @@
     var isBugsFree = true;
 //-----------------------------------------------------------------------------
 //  debug
-    var debug = true;
-    var demo = true;
-    var analyze = true;
+    var debug = false;
+    var demo = false;
+    var analyze = false;
 
 
 // CORE WORKFLOWS :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
