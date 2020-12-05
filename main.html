@@ -3,12 +3,14 @@
     <head>
 
         <meta charset="UTF-8">
+        <meta property="og:image" content="images/Pixel_Ninja_shot.png" />
         <title>Pixel_Ninja</title>
 
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&display=swap">
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK&display=swap" rel="stylesheet">
+        <script src="js/main.js"></script>
 
     </head>
 
@@ -34,7 +36,7 @@
                 <span class="tooltipText">
 
                     <b>Accepted image formats:</b>
-                    <br>PNG | JPEG | PDF | GIF <br> TIFF | SVG | BMP
+                    <br>PNG | JPEG | PDF | GIF <br> TIFF | SVG | BMP | HEIC
                     <br><br><b>Recommended minimum: </b>
                     <br>500px * 500px
 
@@ -68,7 +70,7 @@
             <userinput>
 
                 <div class="container">
-                <input type="file" name="file" id="upload" class="inputfile" onchange="manageReadSubmit()" accept="image/*,.pdf"/>
+                <input type="file" name="file" id="upload" class="inputfile" onchange="manageReadSubmit()" accept="image/*,.pdf, .HEIC"/>
                 <label for='upload' id='uploadLabel'><t>Upload image</t></label>
                 <label id="putFileName"></label><br><br>
                 </div>
@@ -147,7 +149,7 @@
                             </downloadImgButton>
                         </a><br><br><br>
 
-                        ^ Download this altered image with your message embedded, use password below to unlock message later.</label><br><br>
+                        ^ If image didn't download automatically, please download this image manually by clicking this button.</label><br><br>
                         Password:
                         </div><br>
 
@@ -177,6 +179,7 @@
 
                     <div id="overlayContentImg" class="overlayContentImg">
 
+                        <a id="link"></a>
                         <canvas id="downloadableCanvas" class="responsive"></canvas><br><br>
 
                     </div>
@@ -197,6 +200,7 @@
         </div>
     </body>
     <script id="main" src="js/main.js"></script>
+    <script id="HEIC2Any" src="js/heic2any/dist/heic2any.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/pbkdf2.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>

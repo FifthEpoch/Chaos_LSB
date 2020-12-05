@@ -5,7 +5,7 @@
 // ----------------------------------------------------------------------------
 //  OG image related info
     var img, imgData, width, height;
-    var imgName = '47FE08F8.JPG';
+    var imgName = '47FE08F8.jpg';
 // ----------------------------------------------------------------------------
 //  read-img related info
     var readImg, readImgData, readImg_width, readImg_height, readImgName, seed_read;
@@ -601,7 +601,7 @@ function init() {
     // pre-load default images
     img = new Image();
     img.onload = draw;
-    img.src = "images/47FE08F8.JPG";
+    img.src = "images/47FE08F8.jpg";
     if (debug) {
         console.log("init called ->\nwidth: " + width + " height: " + height);
     }
@@ -637,8 +637,29 @@ function showPage(page) {
 document.getElementById('upload').onchange = function(e) {
     img = new Image();
     img.onload = draw;
-    img.src = URL.createObjectURL(this.files[0]);
     img.onerror = uploadFail;
+
+    if (this.files[0].name.substr(this.files[0].name.lastIndexOf('.') + 1) === 'HEIC' ||
+        this.files[0].name.substr(this.files[0].name.lastIndexOf('.') + 1) === 'heic') {
+
+        document.getElementById("img_info").innerHTML = "";
+        document.getElementById("img_info").style.display = "none";
+        var blob = e.target.files[0];
+        heic2any({
+            blob: blob,
+            toType: "image/png",
+        })
+            .then(function (resultBlob) {
+                img.src = window.URL.createObjectURL(resultBlob);
+            })
+            .catch(function (x) {
+                document.getElementById("img_info").style.display = "block";
+                document.getElementById("img_info").innerHTML =
+                    "Error code: <code>" + x.code + "</code> " + x.message;
+            });
+    } else {
+        img.src = URL.createObjectURL(this.files[0]);
+    }
     document.getElementById('img_info').innerHTML = "uploaded image";
     imgName = this.files[0].name;
     document.getElementById('putFileName').innerHTML = "  " + imgName;
@@ -823,8 +844,10 @@ function download() {
             .toDataURL("image/png")
             .replace("image/png", "image/octet-stream");
 
+    var newImgName = imgName.substr(0, imgName.lastIndexOf('.')).concat('.png');
+
     download.setAttribute("href", image);
-    download.setAttribute("download", imgName);
+    download.setAttribute("download", newImgName);
 }
 function exportText() {
     var exportText = document.getElementById("exportText");
