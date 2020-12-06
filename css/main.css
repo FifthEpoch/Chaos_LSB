@@ -222,7 +222,7 @@ back:hover, back:active {
     padding: 3%;
     z-index: 2;
 }
-canvas {
+canvas, img {
     padding: 5%;
     border: 2px solid blue;
     position: inherit;
