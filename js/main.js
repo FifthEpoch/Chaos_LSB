@@ -602,9 +602,6 @@ function init() {
     img = new Image();
     img.onload = draw;
     img.src = "images/47FE08F8.jpg";
-    if (debug) {
-        console.log("init called ->\nwidth: " + width + " height: " + height);
-    }
     document.getElementById('img_info').innerHTML = "default image";
 
     readImg = new Image();
@@ -634,11 +631,36 @@ function showPage(page) {
 
 // image upload button pressed -------------------------------------------------
 
-document.getElementById('upload').onchange = function(e) {
-    img = new Image();
-    img.onload = draw;
-    img.onerror = uploadFail;
+document.getElementById("upload").addEventListener("change", function (ev){
+    if (this.files[0].name.substr(this.files[0].name.lastIndexOf('.') + 1) === 'HEIC'){
+        var blob = ev.target.files[0];
+        heic2any({
+            blob: blob,
+            toType: "image/png",
+        })
+            .then(function (resultBlob) {
+                img = new Image();
+                img.onload = draw;
+                img.src = window.URL.createObjectURL(resultBlob);
+            })
+            .catch(function (x) {
+                document.getElementById("error-on-try").style.display = "block";
+                document.getElementById("error-on-try").innerHTML =
+                    "Error code: <code>" + x.code + "</code> " + x.message;
+            });
+    } else {
+        img = new Image();
+        img.onload = draw;
+        img.src = URL.createObjectURL(this.files[0]);
+    }
+    imgName = this.files[0].name;
+    document.getElementById('putFileName').innerHTML = "  " + imgName;
+    document.getElementById('img_info').innerHTML = "uploaded image";
+});
 
+/*document.getElementById('upload').onchange = function(e) {
+    img = new Image();
+    var url;
     if (this.files[0].name.substr(this.files[0].name.lastIndexOf('.') + 1) === 'HEIC' ||
         this.files[0].name.substr(this.files[0].name.lastIndexOf('.') + 1) === 'heic') {
 
@@ -650,7 +672,7 @@ document.getElementById('upload').onchange = function(e) {
             toType: "image/png",
         })
             .then(function (resultBlob) {
-                img.src = window.URL.createObjectURL(resultBlob);
+                url = window.URL.createObjectURL(resultBlob);
             })
             .catch(function (x) {
                 document.getElementById("img_info").style.display = "block";
@@ -658,12 +680,15 @@ document.getElementById('upload').onchange = function(e) {
                     "Error code: <code>" + x.code + "</code> " + x.message;
             });
     } else {
-        img.src = URL.createObjectURL(this.files[0]);
+        url = URL.createObjectURL(this.files[0]);
     }
-    document.getElementById('img_info').innerHTML = "uploaded image";
+    img.src = url;
+    img.onload = draw;
+    img.onerror = uploadFail;
     imgName = this.files[0].name;
     document.getElementById('putFileName').innerHTML = "  " + imgName;
-}
+    document.getElementById('img_info').innerHTML = "uploaded image";
+}*/
 
 document.getElementById('read-img-upload').onchange = function(e) {
     readImg = new Image();
@@ -686,10 +711,7 @@ function uploadFail() {
 function draw() {
     width = this.naturalWidth;
     height = this.naturalHeight;
-    if (debug) {
-        console.log("inside draw: \n" +
-            "width: " + width + " height: " + height);
-    }
+
     cvs = document.getElementById('canvas');
     cvs.width = width;
     cvs.height = height;
