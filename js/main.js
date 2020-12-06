@@ -636,7 +636,8 @@ document.getElementById("upload").addEventListener("change", function (ev){
         var blob = ev.target.files[0];
         heic2any({
             blob: blob,
-            toType: "image/png",
+            toType: "image/jpeg",
+            quality: 0.5,
         })
             .then(function (resultBlob) {
                 img = new Image();
