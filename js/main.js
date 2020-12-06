@@ -866,8 +866,11 @@ function download() {
             .toDataURL("image/png")
             .replace("image/png", "image/octet-stream");
 
-    var newImgName = imgName.substr(0, imgName.lastIndexOf('.')).concat('.png');
-
+    if (imgName.lastIndexOf('.') >= 0){
+        var newImgName = imgName.substr(0, imgName.lastIndexOf('.')).concat('.png');
+    } else {
+        var newImgName = imgName.concat('.png');
+    }
     download.setAttribute("href", image);
     download.setAttribute("download", newImgName);
 }
