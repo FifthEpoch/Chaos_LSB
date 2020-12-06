@@ -5,7 +5,7 @@
 // ----------------------------------------------------------------------------
 //  OG image related info
     var img, imgData, width, height;
-    var imgName = '47FE08F8.jpg';
+    var imgName = '47FE08F8';
 // ----------------------------------------------------------------------------
 //  read-img related info
     var readImg, readImgData, readImg_width, readImg_height, readImgName, seed_read;
@@ -654,8 +654,13 @@ document.getElementById("upload").addEventListener("change", function (ev){
         img.onload = draw;
         img.src = URL.createObjectURL(this.files[0]);
     }
-    imgName = this.files[0].name;
-    document.getElementById('putFileName').innerHTML = "  " + imgName;
+
+    if (this.files[0].name.indexOf('.')){
+        imgName = this.files[0].name.substr(0, this.files[0].name.indexOf('.'));
+    } else {
+        imgName = this.files[0].name;
+    }
+    document.getElementById('putFileName').innerHTML = "  " + this.files[0].name;
     document.getElementById('img_info').innerHTML = "uploaded image";
 });
 
@@ -694,7 +699,11 @@ document.getElementById("upload").addEventListener("change", function (ev){
 document.getElementById('read-img-upload').onchange = function(e) {
     readImg = new Image();
     readImg.onload = drawRead;
-    readImg.src = URL.createObjectURL(this.files[0]);
+    var url = URL.createObjectURL(this.files[0]);
+    readImg.src = url;
+    // image test
+    document.getElementById('img_overlay').src = url;
+
     readImg.onerror = uploadFail;
     readImgName = this.files[0].name;
     document.getElementById('read_img_info').innerHTML = "uploaded image";
@@ -735,11 +744,23 @@ function drawRead() {
 }
 
 function drawOverlay(width, height) {
-    download_cvs = document.getElementById('downloadableCanvas');
-    download_cvs.width = width;
-    download_cvs.height = height;
-    download_ctx = download_cvs.getContext('2d');
-    download_ctx.putImageData(downloadImgData, 0, 0);
+    let parent = document.getElementById('overlayContentImg');
+    let temp_canvas = document.createElement("canvas");
+    let emptyImg = document.getElementById('img_overlay');
+
+    temp_canvas.id = 'temp_canvas';
+    parent.appendChild(temp_canvas);
+    temp_canvas.width = width;
+    temp_canvas.height = height;
+    temp_ctx = temp_canvas.getContext('2d');
+    temp_ctx.putImageData(downloadImgData, 0, 0);
+
+    let img_name = imgName.concat('.png');
+    var data = temp_canvas.toDataURL('image/png');
+    emptyImg.src = data;
+    emptyImg.setAttribute('download', img_name)
+
+    temp_canvas.remove();
 }
 
 // submit button pressed ---------------------------------------------------------
@@ -861,7 +882,37 @@ function overlay_off() {
 // download button pressed -----------------------------------------------------------------
 
 function download() {
-    var download = document.getElementById("download");
+    let fileName = imgName.concat('.png');
+
+    let parent = document.getElementById('overlayContentImg');
+    let temp_canvas = document.createElement("canvas");
+    temp_canvas.id = 'temp_canvas';
+    parent.appendChild(temp_canvas);
+    temp_canvas.width = width;
+    temp_canvas.height = height;
+    temp_ctx = temp_canvas.getContext('2d');
+    temp_ctx.putImageData(downloadImgData, 0, 0);
+
+    if (window.navigator.msSaveOrOpenBlob()) {
+        temp_canvas.toBlob(function(blob) {
+            window.navigator.msSaveOrOpenBlob(blob, fileName);
+        },'image/png');
+    } else {
+        var image =
+            temp_canvas
+                .toDataURL("image/png")
+                .replace("image/png", "image/octet-stream");
+
+        var a = document.createElement('a');
+        a.href = image;
+        a.download = fileName;
+        a.target='_blank';
+        a.click();
+        a.remove();
+    }
+    temp_canvas.remove();
+
+    /*var download = document.getElementById("download");
     var image =
         document.getElementById('downloadableCanvas')
             .toDataURL("image/png")
@@ -873,7 +924,7 @@ function download() {
         var newImgName = imgName.concat('.png');
     }
     download.setAttribute("href", image);
-    download.setAttribute("download", newImgName);
+    download.setAttribute("download", newImgName);*/
 }
 function exportText() {
     var exportText = document.getElementById("exportText");
