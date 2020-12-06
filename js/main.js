@@ -744,11 +744,13 @@ function drawRead() {
 }
 
 function drawOverlay(width, height) {
-    let parent = document.getElementById('overlayContentImg');
+    let parent = document.getElementById('invis');
     let temp_canvas = document.createElement("canvas");
     let emptyImg = document.getElementById('img_overlay');
 
     temp_canvas.id = 'temp_canvas';
+    temp_canvas.style.display = 'none';
+
     parent.appendChild(temp_canvas);
     temp_canvas.width = width;
     temp_canvas.height = height;
@@ -757,10 +759,9 @@ function drawOverlay(width, height) {
 
     let img_name = imgName.concat('.png');
     var data = temp_canvas.toDataURL('image/png');
+    temp_canvas.remove();
     emptyImg.src = data;
     emptyImg.setAttribute('download', img_name)
-
-    temp_canvas.remove();
 }
 
 // submit button pressed ---------------------------------------------------------
@@ -882,35 +883,30 @@ function overlay_off() {
 // download button pressed -----------------------------------------------------------------
 
 function download() {
+
     let fileName = imgName.concat('.png');
 
-    let parent = document.getElementById('overlayContentImg');
+    let parent = document.getElementById('invis');
     let temp_canvas = document.createElement("canvas");
     temp_canvas.id = 'temp_canvas';
+    temp_canvas.style.display = 'none';
     parent.appendChild(temp_canvas);
     temp_canvas.width = width;
     temp_canvas.height = height;
     temp_ctx = temp_canvas.getContext('2d');
     temp_ctx.putImageData(downloadImgData, 0, 0);
 
-    if (window.navigator.msSaveOrOpenBlob()) {
-        temp_canvas.toBlob(function(blob) {
-            window.navigator.msSaveOrOpenBlob(blob, fileName);
-        },'image/png');
-    } else {
-        var image =
-            temp_canvas
-                .toDataURL("image/png")
-                .replace("image/png", "image/octet-stream");
-
-        var a = document.createElement('a');
-        a.href = image;
-        a.download = fileName;
-        a.target='_blank';
-        a.click();
-        a.remove();
-    }
+    var image =
+        temp_canvas
+            .toDataURL("image/png")
+            .replace("image/png", "image/octet-stream");
     temp_canvas.remove();
+
+    var a = document.createElement('a');
+    a.href = image;
+    a.download = fileName;
+    a.target='_blank';
+    a.click();
 
     /*var download = document.getElementById("download");
     var image =
