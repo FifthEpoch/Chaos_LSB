@@ -213,7 +213,7 @@ function storeSeed() {
         if (seed_read !== seed) {
             isBugsFree = false;
             overlay_off();
-            throw alert('code side error, data not stored correctly. Please come back later.');
+            throw alert('Error: \ncode side error, data not stored correctly. Please report this error directly to maintanance:  hktaz@protonmail.com');
         }
     }
 }
@@ -425,7 +425,7 @@ function readImageData () {
         isLoading = false;
         isBugsFree = false;
         overlay_off();
-        throw alert('Something went wrong. \nIncorrect password, or image does not contain a secret message, or hidden data damaged (common for images that were compressed when being sent).');
+        throw alert('Error: \nIncorrect password, or image does not contain a secret message, or hidden data damaged (common for images that were compressed when being sent).');
     }
 
     if (debug) {
@@ -628,6 +628,18 @@ function showPage(page) {
     currentPage = page;
 }
 
+function toggle_help() {
+    let help_class  = document.getElementsByClassName('help');
+    let bottomLayer = document.getElementById('bottomLayer');
+
+    let boo = help_class[0].style.display === 'block';
+    let kwd = boo ? 'none' : 'block';
+
+    for (var i = 0; i < help_class.length; i++) {
+        help_class[i].style.display = kwd;
+    }
+    bottomLayer.classList.toggle('noScroll', !boo);
+}
 
 // image upload button pressed -------------------------------------------------
 
@@ -712,8 +724,8 @@ document.getElementById('read-img-upload').onchange = function(e) {
 }
 
 function uploadFail() {
-    document.getElementsByTagName("imgError").innerHTML = "Upload failed... " +
-        "\nPlease make sure to upload an image file, JPG and PNG are recommended.";
+    document.getElementsByTagName("imgError").innerHTML = "Error: " +
+        "\nIncorrect file type. Please make sure to upload an image file, JPG and PNG are recommended.";
 }
 
 // draw canvas ------------------------------------------------------------------
@@ -781,7 +793,7 @@ document.getElementById('submit').onclick = function (e) {
             msg = document.getElementById('msg').value;
             document.getElementById('userMessage').innerHTML = msg;
     } else {
-            throw alert("Message too long. Shorten message, " +
+            throw alert("Error: \nMessage too long. Shorten message, " +
                 "or upload an image with higher resolution.");
     }
 
