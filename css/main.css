@@ -433,6 +433,7 @@ b {
 }
 .help-illustration {
     border: none;
+    opacity: 90%;
     height: 100px;
     width: auto;
 }

@@ -20,14 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="46dd5497-b56a-4c4a-8561-1dcc05910b3a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/images/UI/help_icon_default.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/UI/help_icon_mouseover.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/UI/tutorial-illustration/Tutoial_illustration_01.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/UI/tutorial-illustration/Tutoial_illustration_02.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/UI/tutorial-illustration/Tutoial_illustration_03.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/UI/tutorial-illustration/Tutoial_illustration_04.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/main.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -70,7 +64,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1617989322799</updated>
-      <workItem from="1617989324232" duration="24283000" />
+      <workItem from="1617989324232" duration="24738000" />
     </task>
     <servers />
   </component>
