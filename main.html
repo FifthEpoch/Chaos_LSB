@@ -4,6 +4,7 @@
 
         <meta charset="UTF-8">
         <meta property="og:image" content="images/Pixel_Ninja_shot.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Pixel_Ninja</title>
 
         <link rel="stylesheet" href="css/main.css">
@@ -13,17 +14,119 @@
 
     </head>
 
+    <input type="button" class='help-button' onclick="toggle_help()"/>
+    <help class="help">
+        <div id="help-overlay-bg" class="help">
+            <div id="help-bg" class="help">
+                <div>
+                    <back type="button" class="help" onclick="toggle_help()">
+                        <t>exit</t>
+                    </back>
+                </div>
+                <div id="help-content">
+                    <div align="center" class="help-content-child">
+                        <h3>Tutorial & Troubleshooting</h3>
+                        <p2>
+                            The content below provides an overview of Pixel_Ninja. Information on how to use this tool,
+                            troubleshooting error messages, and more documentation on the code itself are made available
+                            in the following sections.
+                        </p2>
+                    </div>
+                    <hr class="help-section"><br>
+                    <div align="center" class="help-content-child">
+                        <h2 class="offwhite">Video walk-through</h2>
+                        <p2>Learn how to embed a book into an image with Pixel_Ninja with a virtual tour.</p2>
+                        <br><br><br>
+                        <div class="iframe-container">
+                            <iframe class="iframe" width="560" height="315"
+                                src="https://youtube.com/embed/InVZqq3yDvM">
+                            </iframe>
+                        </div>
+                    </div>
+                    <hr class="help-section"><br>
+                    <div align="center" class="help-content-child">
+                        <h2 class="offwhite">Step-by-step tutorial</h2><br>
+                        <img src="./images/UI/tutorial-illustration/Tutoial_illustration_01.png" class="help-illustration">
+                        <br>
+                        <p2>STEP 1: Establish a password</p2><br>
+                        <hr class="dotted">
+                        <p2><b>Discuss a mutual password with the other party via a secure channel.
+                            We encourage doing this in person to keep the password exchange offline.</b></p2>
+                        <br><br>
+                        <img src="./images/UI/tutorial-illustration/Tutoial_illustration_02.png" class="help-illustration">
+                        <br>
+                        <p2>STEP 2: Data-hiding</p2><br>
+                        <hr class="dotted">
+                        <p2><b>Upload an image in the "Hide" page on Pixel_Ninja. Enter the text you
+                            would like to embed, add a password, and click "Hide message". Alternatively,
+                            you can leave the password empty, and the other party will also leave
+                            the password empty when they extract hidden text from the image in the future.</b></p2>
+                        <br><br>
+                        <img src="./images/UI/tutorial-illustration/Tutoial_illustration_03.png" class="help-illustration">
+                        <br>
+                        <p2>STEP 3: Send image</p2><br>
+                        <hr class="dotted">
+                        <p2><b>Send the image via your regular communication channel. Make sure to always
+                            send the iamge at its full size to avoid image compression. (email and chat
+                            services like WhatsApp, WeChat, and Telegram offers compression-free image
+                            transmission, SMS and Facebook Messenger do not.)</b></p2>
+                        <br><br>
+                        <img src="./images/UI/tutorial-illustration/Tutoial_illustration_04.png" class="help-illustration">
+                        <br>
+                        <p2>STEP 4: Extract text from image</p2><br>
+                        <hr class="dotted">
+                        <p2><b>The receiver can reveal the hidden text on the "Extract" page of this site.
+                            Simply upload the image, enter the password, and click "Reveal Message".</b></p2>
+                        <br><br>
+                    </div>
+                    <hr class="help-section"><br>
+                    <div align="center" class="help-content-child">
+                        <h2 class="offwhite">Troubleshooting</h2>
+                        <p2>Solutions to different error messages.</p2>
+                        <br><br><br><br>
+                        <p2>INCORRECT FILE TYPE</p2>
+                        <hr class="dotted">
+                        <p2><b>Uploaded file is either not an image file, or image format is not supported.
+                            Pixel_Ninja can take PNG, JPEG, HEIC (iPhone's default photo format),
+                            GIF, TIFF, BMP, PDF, and SVG. The final output will be a PNG file.</b></p2>
+                        <br><br><br>
+                        <p2>MESSAGE TOO LONG</p2>
+                        <hr class="dotted">
+                        <p2><b>This error message means the size of the text is too large for the dimension of the image.
+                            To fix this, use an image with a higher resolution.</b></p2>
+                        <br><br><br>
+                        <p2>INCORRECT PASSWORD, HIDDEN DATA DAMAGED, IMAGE IS EMPTY.</p2>
+                        <hr class="dotted">
+                        <p2><b>Please make sure you have entered the password correctly, note that password is case-sensitive.
+                            If the error persists, the image might have been compressed in the process of transmission.</b></p2>
+                        <br><br><br>
+                        <p2>CODE SIDE ERROR</p2>
+                        <hr class="dotted">
+                        <p2><b>This error means something isn't working properly on Pixel_Ninja. If you run into this error message,
+                            please report the incident directly to maintenance: hktaz@protonmail.com</b></p2>
+                        <br><br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </help>
+
     <body id="bottomLayer">
 
         <h1>Pixel_Ninja</h1>
-        <h2>Hide text in image in a click, it's that easy.</h2>
+        <h2 class="blue">Privacy made easy, hide data in one click.</h2>
 
         <p1 class="intro">
-            Got something to say to your bud that should never see the light of day?<br><br>
-            Fly under the radar with Pixel_Ninja, a tool that embeds your secret in an image with a password of your choice.
-            We apply advanced encryption and steganography methods to make sure your message won't be compromised.
+            Steganography is the art and science of hiding things in other things.
+            Pixel_Ninja hides text data (such as a secret message, a censored
+            news article, or a banned book) in images without altering the
+            appearance of the images to the naked eye.
             <br><br>
-            We are proud to support text-embedding in all unicode-supported languages.
+            Data-embedding in * ALL * unicode-supported languages.
+            <br><br>
+            <div>
+                <a href="https://www.youtube.com/watch?v=InVZqq3yDvM" id="vid-link">▶ Watch a demo video</a>
+            </div>
         </p1>
 
         <p1 class="intro">
@@ -150,7 +253,7 @@
                             </downloadImgButton>
                         </a><br><br><br>
 
-                        ^ If image didn't download automatically, please download this image manually by clicking this button.</label><br><br>
+                        < if you are on a mobile device, save this image by pressing on the image itself.</label><br><br>
                         Password:
                         </div><br>
 
@@ -200,6 +303,7 @@
 
         </div>
     </body>
+
     <script id="main" src="js/main.js"></script>
     <script id="heic2any" src="js/heic2any/dist/heic2any.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
